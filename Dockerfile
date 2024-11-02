@@ -18,6 +18,8 @@ RUN apt-get update; \
 RUN apt-get update; \
     apt-get install --assume-yes libtinyxml2-dev
 
+RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
+
 # Add build script
 COPY build.sh /usr/local/bin
 
