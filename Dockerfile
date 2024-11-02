@@ -15,6 +15,9 @@ RUN apt-get update; \
     add-apt-repository --enable-source ppa:team-xbmc/xbmc-nightly; \
     apt-get build-dep --assume-yes kodi;
 
+RUN apt-get update; \
+    apt-get install --assume-yes libtinyxml2-dev
+
 # Add build script
 COPY build.sh /usr/local/bin
 
