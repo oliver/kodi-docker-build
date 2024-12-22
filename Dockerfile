@@ -16,7 +16,7 @@ RUN apt-get update; \
     apt-get build-dep --assume-yes kodi;
 
 RUN apt-get update; \
-    apt-get install --assume-yes libtinyxml2-dev
+    apt-get install --assume-yes libtinyxml2-dev libexiv2-dev
 
 RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
 
