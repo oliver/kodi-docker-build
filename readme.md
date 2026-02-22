@@ -25,8 +25,14 @@ Create a symlink to your Kodi source:
 ln -s <path_to_kodi_source> xbmc
 ```
 
-> If you just want to build the current `master`-branch, simply execute
+> Or if you just want to build the current `master`-branch, simply execute
   `git clone https://github.com/xbmc/xbmc.git`.
+
+### Create Build Output Directory
+
+```sh
+mkdir -p ~/tmp/kodibuild
+```
 
 ### Build Kodi inside Docker
 
@@ -35,10 +41,12 @@ ln -s <path_to_kodi_source> xbmc
 
 ```sh
 docker run \
+  --rm \
+  -it \
   --memory "8g" \
   --memory-swap "8g" \
   --volume $(readlink -f xbmc):/kodi/source \
-  --volume $(pwd)/build:/kodi/build \
+  --volume ~/tmp/kodibuild:/kodi/build \
   kodi-docker-build:latest build.sh
 ```
 
@@ -46,10 +54,12 @@ The first build will take a few hours.
 
 ## Testing the build
 
-You should find a `kodi-x11` file in the `build` folder.
+You should find a `kodi.bin` file in the `tmp/kodibuild` folder in your home directory.
 
 Execute it to test your build. If it does not work because
-of missing libraries, install Kodi via `apt`:
+of missing libraries, there are two options:
+
+1) Install Kodi via `apt`:
 
 ```sh
 sudo add-apt-repository ppa:team-xbmc/xbmc-nightly
@@ -58,6 +68,15 @@ sudo apt-get install kodi
 ```
 
 This will install all missing dependencies.
+
+2) Run Kodi in a Docker container, using [x11docker](https://github.com/mviereck/x11docker):
+
+```sh
+git clone https://github.com/mviereck/x11docker.git
+cd x11docker
+./x11docker --desktop --size 1280x800 -i --gpu --network=host --sudouser --pulseaudio -- --rm --volume ~/tmp/kodibuild:/kodi/build -- kodi-docker-build:latest bash
+/kodi/build/kodi.bin --windowing=x11
+```
 
 ## Clean up
 
