@@ -40,16 +40,10 @@ RUN apt-get update && \
     apt-get install --assume-yes libflatbuffers-dev && \
     apt-get install --assume-yes doxygen libcap-dev libsndio-dev libmariadbd-dev
 
-# Add full password-less sudo permissions for build user, for easier development
-RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
+# Add full password-less sudo permissions for ubuntu user, for easier development
+RUN echo 'ubuntu   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/ubuntu-user
 
 # Add build script
 COPY build.sh /usr/local/bin
 
-# Create user
-# TODO: is this separate user still necessary, if ubuntu:24.04 has the "ubuntu" user built-in?
-RUN groupadd --gid 1005 build && \
-    useradd --uid 1005 --gid build --shell /bin/bash --create-home build;
-
-# Use `build`-user to create files with matching permissions
-USER build
+USER ubuntu
