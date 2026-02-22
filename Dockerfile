@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM docker.io/debian:forky-20260316-slim
 
 # Create working directory
 WORKDIR /kodi/build
@@ -12,7 +12,7 @@ VOLUME /kodi/build
 # Install build dependencies
 # (the package list in long "install" command must be identical to the command from https://github.com/xbmc/xbmc/blob/master/docs/README.Ubuntu.md#32-get-build-dependencies-manually)
 RUN apt-get update && \
-    apt-get install --assume-yes ccache software-properties-common nano less sudo ninja-build && \
+    apt-get install --assume-yes ccache nano less sudo ninja-build && \
     apt-get install --assume-yes autoconf automake autopoint autotools-dev cmake \
       curl debhelper default-jre doxygen gawk gcc gdc gettext gperf \
       libasound2-dev libass-dev libavahi-client-dev libavahi-common-dev \
@@ -23,7 +23,7 @@ RUN apt-get update && \
       libfstrcmp-dev libgcrypt-dev libgif-dev libgl1-mesa-dev \
       libgles2-mesa-dev libglu1-mesa-dev libgnutls28-dev libgpg-error-dev \
       libgtest-dev libiso9660-dev libjpeg-dev liblcms2-dev libltdl-dev \
-      liblzo2-dev libmicrohttpd-dev libmysqlclient-dev libnfs-dev \
+      liblzo2-dev libmicrohttpd-dev libmariadb-dev libnfs-dev \
       libogg-dev libp8-platform-dev libpcre2-dev libplist-dev libpng-dev \
       libpulse-dev libshairplay-dev libsmbclient-dev libspdlog-dev \
       libsqlite3-dev libssl-dev libtag1-dev libtiff5-dev libtinyxml-dev \
