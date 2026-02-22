@@ -77,8 +77,8 @@ COPY build.sh /usr/local/bin
 
 # Create user
 # TODO: is this separate user still necessary, if ubuntu:24.04 has the "ubuntu" user built-in?
-RUN groupadd --gid 1005 build && \
-    useradd --uid 1005 --gid build --shell /bin/bash --create-home build;
+RUN groupadd --gid 1000 build && \
+    useradd --uid 1000 --gid build --shell /bin/bash --create-home build;
 
 # Use `build`-user to create files with matching permissions
 USER build
