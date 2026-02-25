@@ -36,10 +36,12 @@ RUN apt-get update && \
 # Install additional dependencies (as described at https://github.com/xbmc/xbmc/blob/master/docs/README.Ubuntu.md#32-get-build-dependencies-manually):
 # - for Ubuntu >= 20.04
 # - for GBM
+# - for Wayland
 # - for extra functionality
 RUN apt-get update && \
     apt-get install --assume-yes libflatbuffers-dev && \
     apt-get install --assume-yes libgbm-dev libinput-dev libxkbcommon-dev && \
+    apt-get install --assume-yes libglew-dev libwayland-dev libxkbcommon-dev waylandpp-dev wayland-protocols && \
     apt-get install --assume-yes doxygen libcap-dev libsndio-dev libmariadbd-dev
 
 
