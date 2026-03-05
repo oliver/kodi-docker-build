@@ -18,6 +18,7 @@ RUN apt-get update; \
 RUN apt-get update; \
     apt-get install --assume-yes libtinyxml2-dev libexiv2-dev
 
+# Add full password-less sudo permissions for build user, for easier development
 RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
 
 # Add build script
