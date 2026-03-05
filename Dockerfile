@@ -35,10 +35,32 @@ RUN apt-get update && \
 
 # Install additional dependencies (as described at https://github.com/xbmc/xbmc/blob/master/docs/README.Ubuntu.md#32-get-build-dependencies-manually):
 # - for Ubuntu >= 20.04
+# - for GBM
 # - for extra functionality
 RUN apt-get update && \
     apt-get install --assume-yes libflatbuffers-dev && \
+    apt-get install --assume-yes libgbm-dev libinput-dev libxkbcommon-dev && \
     apt-get install --assume-yes doxygen libcap-dev libsndio-dev libmariadbd-dev
+
+
+# Build libdisplay-info
+RUN apt-get update && \
+    apt-get install --assume-yes hwdata git
+
+RUN mkdir -p /kodi/deps/libdisplay-info
+WORKDIR /kodi/deps/libdisplay-info
+
+RUN git clone https://gitlab.freedesktop.org/emersion/libdisplay-info
+RUN cd libdisplay-info && \
+    git checkout 0.3.0 && \
+    mkdir build && \
+    cd build && \
+    meson setup --prefix=/usr/local --buildtype=release && \
+    ninja && \
+    ninja install
+
+WORKDIR /kodi/build
+
 
 # Add full password-less sudo permissions for ubuntu user, for easier development
 RUN echo 'ubuntu   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/ubuntu-user
