@@ -10,12 +10,12 @@ VOLUME /kodi/source
 VOLUME /kodi/build
 
 # Install build dependencies
-RUN apt-get update; \
-    apt-get install --assume-yes ccache software-properties-common nano less aptitude sudo; \
-    add-apt-repository --enable-source ppa:team-xbmc/xbmc-nightly; \
+RUN apt-get update && \
+    apt-get install --assume-yes ccache software-properties-common nano less aptitude sudo && \
+    add-apt-repository --enable-source ppa:team-xbmc/xbmc-nightly && \
     apt-get build-dep --assume-yes kodi;
 
-RUN apt-get update; \
+RUN apt-get update && \
     apt-get install --assume-yes libtinyxml2-dev libexiv2-dev
 
 # Add full password-less sudo permissions for build user, for easier development
@@ -25,7 +25,7 @@ RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
 COPY build.sh /usr/local/bin
 
 # Create user
-RUN groupadd --gid 1000 build; \
+RUN groupadd --gid 1000 build && \
     useradd --uid 1000 --gid build --shell /bin/bash --create-home build;
 
 # Use `build`-user to create files with matching permissions
