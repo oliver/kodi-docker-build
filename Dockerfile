@@ -12,7 +12,7 @@ VOLUME /kodi/build
 # Install build dependencies
 # (the package list in long "install" command must be identical to the command from https://github.com/xbmc/xbmc/blob/master/docs/README.Ubuntu.md#32-get-build-dependencies-manually)
 RUN apt-get update && \
-    apt-get install --assume-yes ccache software-properties-common nano less aptitude sudo ninja-build && \
+    apt-get install --assume-yes ccache software-properties-common nano less sudo ninja-build && \
     apt-get install --assume-yes autoconf automake autopoint autotools-dev cmake \
       curl debhelper default-jre doxygen gawk gcc gdc gettext gperf \
       libasound2-dev libass-dev libavahi-client-dev libavahi-common-dev \
