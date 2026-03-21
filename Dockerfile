@@ -69,10 +69,16 @@ RUN cd libdisplay-info && \
 WORKDIR /kodi/build
 
 
-# Add full password-less sudo permissions for ubuntu user, for easier development
-RUN echo 'ubuntu   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/ubuntu-user
+# Add full password-less sudo permissions for build user, for easier development
+RUN echo 'build   ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/build-user
 
 # Add build script
 COPY build.sh /usr/local/bin
 
-USER ubuntu
+# Create user
+# TODO: is this separate user still necessary, if ubuntu:24.04 has the "ubuntu" user built-in?
+RUN groupadd --gid 1005 build && \
+    useradd --uid 1005 --gid build --shell /bin/bash --create-home build;
+
+# Use `build`-user to create files with matching permissions
+USER build
