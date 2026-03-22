@@ -28,7 +28,7 @@ cmake --build .
 cmake --build . -- install
 
 
-# Build addons
+# Build official Kodi addons
 cd /kodi/build
 
 # Download source repository for official addons
@@ -53,3 +53,31 @@ cmake /kodi/source/cmake/addons/ \
       -DBUILD_DIR=/kodi/build/addons_official_build_build \
       -DPACKAGE_ZIP=1
 cmake --build . -- -j1
+
+
+# Build some addons from "kodi-game" repository
+cd /kodi/build
+
+# Download source repository for kodi-game addons
+mkdir addons_kodigame_bootstrap_cmake
+cd addons_kodigame_bootstrap_cmake
+cmake /kodi/source/cmake/addons/bootstrap/ \
+      -DCMAKE_GENERATOR=Ninja \
+      -DREPOSITORY_TO_BUILD=https://github.com/kodi-game/repo-binary-addons.git \
+      -DREPOSITORY_REVISION=retroplayer-piers \
+      -DCMAKE_INSTALL_PREFIX=/kodi/build/addons_kodigame_bootstrap_install \
+      -DBUILD_DIR=/kodi/build/addons_kodigame_bootstrap_build
+cmake --build .
+
+# Build some kodi-game addons
+cd /kodi/build
+mkdir addons_kodigame_build_cmake
+cd addons_kodigame_build_cmake
+cmake /kodi/source/cmake/addons/ \
+      -DCMAKE_GENERATOR=Ninja \
+      -DADDONS_TO_BUILD='game..*' \
+      -DADDONS_DEFINITION_DIR=/kodi/build/addons_kodigame_bootstrap_install \
+      -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install/share/kodi/addons/ \
+      -DBUILD_DIR=/kodi/build/addons_kodigame_build_build \
+      -DPACKAGE_ZIP=1
+cmake --build .
