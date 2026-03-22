@@ -59,7 +59,8 @@ RUN cd libdisplay-info && \
     cd build && \
     meson setup --prefix=/usr/local --buildtype=release && \
     ninja && \
-    ninja install
+    ninja install && \
+    ldconfig
 
 WORKDIR /kodi/build
 
