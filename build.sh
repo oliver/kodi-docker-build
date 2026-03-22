@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 
+# exit on errors:
 set -e
+
+# show commands:
+set -x
+
 
 # Build Kodi itself
 cd /kodi/build
