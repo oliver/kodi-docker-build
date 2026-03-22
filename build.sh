@@ -15,7 +15,7 @@ cmake /kodi/source \
       -DAPP_RENDER_SYSTEM=gl \
       -DENABLE_INTERNAL_FFMPEG=ON
 
-cmake --build . -- -j2
+cmake --build .
 cmake --build . -- install
 
 
@@ -27,6 +27,7 @@ cd /kodi/build
 mkdir addons_bootstrap_cmake
 cd addons_bootstrap_cmake
 cmake /kodi/source/cmake/addons/bootstrap/ \
+      -DCMAKE_GENERATOR=Ninja \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/addons_bootstrap_install \
       -DBUILD_DIR=/kodi/build/addons_bootstrap_build
 cmake --build .
@@ -36,9 +37,10 @@ cd /kodi/build
 mkdir addons_build_cmake
 cd addons_build_cmake
 cmake /kodi/source/cmake/addons/ \
+      -DCMAKE_GENERATOR=Ninja \
       -DADDONS_TO_BUILD="" \
       -DADDONS_DEFINITION_DIR=/kodi/build/addons_bootstrap_install \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install/share/kodi/addons/ \
       -DBUILD_DIR=/kodi/build/addons_build_build \
       -DPACKAGE_ZIP=1
-cmake --build . -- -j2
+cmake --build .
