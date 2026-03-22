@@ -3,6 +3,9 @@
 This a is Docker image for building Kodi based on Ubuntu. It is useful if you are working on
 Kodi and don't want to litter your OS with Kodi build dependencies.
 
+By default this builds Kodi, the official add-ons, and many game add-ons from
+the [kodi-game](https://github.com/kodi-game/repo-binary-addons) repository.
+
 ## Requirements
 
 * [Docker](https://docs.docker.com/engine/install/) >= 19.03
@@ -51,10 +54,11 @@ docker run \
 ```
 
 The first build will take a few hours.
+It will create ca. 15 GB of temporary data and 1.5 GB of final results (in `kodi_install/`).
 
 ## Testing the build
 
-You should find a `kodi.bin` file in the `tmp/kodibuild` folder in your home directory.
+You should find a `kodi` file in the `tmp/kodibuild/build/kodi_install/bin` folder in your home directory.
 
 Execute it to test your build. If it does not work because
 of missing libraries, there are two options:
@@ -74,9 +78,14 @@ This will install all missing dependencies.
 ```sh
 git clone https://github.com/mviereck/x11docker.git
 cd x11docker
-./x11docker --desktop --size 1280x800 -i --gpu --network=host --sudouser --pulseaudio -- --rm --volume ~/tmp/kodibuild:/kodi/build -- kodi-docker-build:latest bash
-/kodi/build/kodi.bin --windowing=x11
+./x11docker --desktop --size 1280x800 -i --gpu --network=host --sudouser --pulseaudio -- --rm --volume ~/tmp/kodibuild/kodi_install:/kodi/build/kodi_install -- kodi-docker-build:latest bash
+/kodi/build/kodi_install/bin/kodi --windowing=x11
 ```
+
+### Add-ons
+
+The add-ons are automatically installed into `kodi_install/` directory.
+They can be enabled in Kodi under Add-ons -> My add-ons.
 
 ## Clean up
 
