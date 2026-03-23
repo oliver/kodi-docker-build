@@ -52,4 +52,4 @@ cmake /kodi/source/cmake/addons/ \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install/share/kodi/addons/ \
       -DBUILD_DIR=/kodi/build/addons_official_build_build \
       -DPACKAGE_ZIP=1
-cmake --build .
+cmake --build . -- -j1
