@@ -83,6 +83,7 @@ kodigame_addons_to_build=\
 '-game.libretro.pcem$ '\
 '-game.libretro.ppsspp$ '\
 '-game.libretro.redbook$ '\
+'-game.libretro.same_cdi$ '\
 '-game.libretro.uae4arm$ '\
 
 cmake /kodi/source/cmake/addons/ \
