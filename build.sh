@@ -73,9 +73,12 @@ cmake --build .
 cd /kodi/build
 mkdir addons_kodigame_build_cmake
 cd addons_kodigame_build_cmake
+kodigame_addons_to_build=\
+'game..* '\
+
 cmake /kodi/source/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
-      -DADDONS_TO_BUILD='game..*' \
+      -DADDONS_TO_BUILD="$kodigame_addons_to_build" \
       -DADDONS_DEFINITION_DIR=/kodi/build/addons_kodigame_bootstrap_install \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install/share/kodi/addons/ \
       -DBUILD_DIR=/kodi/build/addons_kodigame_build_build \
