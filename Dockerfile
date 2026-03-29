@@ -44,6 +44,10 @@ RUN apt-get update && \
     apt-get install --assume-yes libglew-dev libwayland-dev libxkbcommon-dev waylandpp-dev wayland-protocols && \
     apt-get install --assume-yes doxygen libcap-dev libsndio-dev libmariadbd-dev
 
+# Install additional dependencies for kodi-game addons
+RUN apt-get update && \
+    apt-get install --assume-yes libpcap-dev
+
 
 # Build libdisplay-info
 RUN apt-get update && \
