@@ -80,6 +80,7 @@ kodigame_addons_to_build=\
 '-game.libretro.lrps2$ '\
 '-game.libretro.*mame.*$ '\
 '-game.libretro.parallext$ '\
+'-game.libretro.pcem$ '\
 
 cmake /kodi/source/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
