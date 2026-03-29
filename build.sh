@@ -76,6 +76,7 @@ cd addons_kodigame_build_cmake
 kodigame_addons_to_build=\
 'game..* '\
 '-game.libretro$ '\
+'-game.libretro.beetle-bsnes$ '\
 
 cmake /kodi/source/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
