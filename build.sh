@@ -6,6 +6,10 @@ set -e
 # show commands:
 set -x
 
+# run at low priority
+ionice -n 7 -p $$
+renice 3 -p $$ > /dev/null
+
 
 # Build Kodi itself
 cd /kodi/build
