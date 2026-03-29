@@ -46,7 +46,7 @@ RUN apt-get update && \
 
 # Install additional dependencies for kodi-game addons
 RUN apt-get update && \
-    apt-get install --assume-yes libpcap-dev libxi-dev
+    apt-get install --assume-yes libpcap-dev libxi-dev libtool-bin
 
 
 # Build libdisplay-info
