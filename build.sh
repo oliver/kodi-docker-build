@@ -85,6 +85,7 @@ kodigame_addons_to_build=\
 '-game.libretro.redbook$ '\
 '-game.libretro.same_cdi$ '\
 '-game.libretro.uae4arm$ '\
+'-game.libretro.*vice.*$ '\
 
 cmake /kodi/source/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
