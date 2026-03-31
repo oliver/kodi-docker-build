@@ -15,7 +15,7 @@ renice 3 -p $$ > /dev/null
 cd /kodi/build
 mkdir kodi_build
 cd kodi_build
-cmake /kodi/source \
+cmake /kodi/source/kodi \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install \
       -DCMAKE_GENERATOR=Ninja \
       -DCORE_PLATFORM_NAME="x11 gbm wayland" \
@@ -32,10 +32,10 @@ cmake --build . -- install
 cd /kodi/build
 
 # Download source repository for official addons
-# (this uses the repository described in /kodi/source/cmake/addons/bootstrap/repositories/binary-addons.txt)
+# (this uses the repository described in /kodi/source/kodi/cmake/addons/bootstrap/repositories/binary-addons.txt)
 mkdir addons_official_bootstrap_cmake
 cd addons_official_bootstrap_cmake
-cmake /kodi/source/cmake/addons/bootstrap/ \
+cmake /kodi/source/kodi/cmake/addons/bootstrap/ \
       -DCMAKE_GENERATOR=Ninja \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/addons_official_bootstrap_install \
       -DBUILD_DIR=/kodi/build/addons_official_bootstrap_build
@@ -45,7 +45,7 @@ cmake --build .
 cd /kodi/build
 mkdir addons_official_build_cmake
 cd addons_official_build_cmake
-cmake /kodi/source/cmake/addons/ \
+cmake /kodi/source/kodi/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
       -DADDONS_TO_BUILD="" \
       -DADDONS_DEFINITION_DIR=/kodi/build/addons_official_bootstrap_install \
@@ -61,7 +61,7 @@ cd /kodi/build
 # Download source repository for kodi-game addons
 mkdir addons_kodigame_bootstrap_cmake
 cd addons_kodigame_bootstrap_cmake
-cmake /kodi/source/cmake/addons/bootstrap/ \
+cmake /kodi/source/kodi/cmake/addons/bootstrap/ \
       -DCMAKE_GENERATOR=Ninja \
       -DREPOSITORY_TO_BUILD=https://github.com/kodi-game/repo-binary-addons.git \
       -DREPOSITORY_REVISION=retroplayer-piers \
@@ -87,7 +87,7 @@ kodigame_addons_to_build=\
 '-game.libretro.uae4arm$ '\
 '-game.libretro.*vice.*$ '\
 
-cmake /kodi/source/cmake/addons/ \
+cmake /kodi/source/kodi/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
       -DADDONS_TO_BUILD="$kodigame_addons_to_build" \
       -DADDONS_DEFINITION_DIR=/kodi/build/addons_kodigame_bootstrap_install \

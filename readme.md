@@ -48,7 +48,7 @@ docker run \
   -it \
   --memory "8g" \
   --memory-swap "8g" \
-  --volume $(readlink -f xbmc):/kodi/source \
+  --volume $(readlink -f xbmc):/kodi/source/kodi \
   --volume ~/tmp/kodibuild:/kodi/build \
   kodi-docker-build:latest build.sh
 ```
