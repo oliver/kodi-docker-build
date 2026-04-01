@@ -38,12 +38,14 @@ cmake --build . -- install
 cd /kodi/build
 
 # Download source repository for official addons
-# (this uses the repository described in /kodi/source/kodi/cmake/addons/bootstrap/repositories/binary-addons.txt)
+# (this currently uses a custom repo-binary-addons repository with fixes necessary for building under Debian Forky)
 mkdir -p addons_official_bootstrap_cmake
 cd addons_official_bootstrap_cmake
 cmake /kodi/source/kodi/cmake/addons/bootstrap/ \
       -DCMAKE_BUILD_TYPE=RelWithDebInfo \
       -DCMAKE_GENERATOR=Ninja \
+      -DREPOSITORY_TO_BUILD=https://github.com/oliver/repo-binary-addons.git \
+      -DREPOSITORY_REVISION=debian_forky \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/addons_official_bootstrap_install \
       -DBUILD_DIR=/kodi/build/addons_official_bootstrap_build
 cmake --build .
