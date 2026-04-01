@@ -88,6 +88,7 @@ kodigame_addons_to_build=\
 'game..* '\
 '-game.libretro$ '\
 '-game.libretro.beetle-bsnes$ '\
+'-game.libretro.dolphin$ '\
 '-game.libretro.lrps2$ '\
 '-game.libretro.*mame.*$ '\
 '-game.libretro.parallext$ '\
