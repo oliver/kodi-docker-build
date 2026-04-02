@@ -13,7 +13,7 @@ VOLUME /kodi/build
 # (the package list in long "install" command must be identical to the command from https://github.com/xbmc/xbmc/blob/master/docs/README.Ubuntu.md#32-get-build-dependencies-manually)
 RUN apt-get update && \
     apt-get install --assume-yes ccache nano less sudo ninja-build && \
-    apt-get install --assume-yes autoconf automake autopoint autotools-dev cmake \
+    apt-get install --assume-yes autoconf automake autopoint autotools-dev \
       curl debhelper doxygen gawk gcc gdc gettext gperf \
       libasound2-dev libass-dev libavahi-client-dev libavahi-common-dev \
       libbluetooth-dev libbluray-dev libbz2-dev libcdio-dev \
@@ -66,6 +66,20 @@ RUN cd libdisplay-info && \
     ninja && \
     ninja install && \
     ldconfig
+
+WORKDIR /kodi/build
+
+
+# Build CMake 3 (because Debian Forky ships with CMake 4, which has removed compatibility with CMake < 3.5, which is needed by some addons)
+RUN mkdir -p /kodi/deps/cmake3
+WORKDIR /kodi/deps/cmake3
+
+RUN curl -Ssf -L -O https://github.com/Kitware/CMake/releases/download/v3.31.11/cmake-3.31.11.tar.gz
+RUN tar xzf cmake-3.31.11.tar.gz && \
+    cd cmake-3.31.11 && \
+    ./configure --prefix=/usr/local && \
+    make && \
+    make install
 
 WORKDIR /kodi/build
 
