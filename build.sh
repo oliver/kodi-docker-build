@@ -13,7 +13,7 @@ renice 3 -p $$ > /dev/null
 
 # Build Kodi itself
 cd /kodi/build
-mkdir kodi_build
+mkdir -p kodi_build
 cd kodi_build
 cmake /kodi/source/kodi \
       -DCMAKE_INSTALL_PREFIX=/kodi/build/kodi_install \
@@ -33,7 +33,7 @@ cd /kodi/build
 
 # Download source repository for official addons
 # (this uses the repository described in /kodi/source/kodi/cmake/addons/bootstrap/repositories/binary-addons.txt)
-mkdir addons_official_bootstrap_cmake
+mkdir -p addons_official_bootstrap_cmake
 cd addons_official_bootstrap_cmake
 cmake /kodi/source/kodi/cmake/addons/bootstrap/ \
       -DCMAKE_GENERATOR=Ninja \
@@ -43,7 +43,7 @@ cmake --build .
 
 # Build all official addons
 cd /kodi/build
-mkdir addons_official_build_cmake
+mkdir -p addons_official_build_cmake
 cd addons_official_build_cmake
 cmake /kodi/source/kodi/cmake/addons/ \
       -DCMAKE_GENERATOR=Ninja \
@@ -59,7 +59,7 @@ cmake --build . -- -j1
 cd /kodi/build
 
 # Download source repository for kodi-game addons
-mkdir addons_kodigame_bootstrap_cmake
+mkdir -p addons_kodigame_bootstrap_cmake
 cd addons_kodigame_bootstrap_cmake
 cmake /kodi/source/kodi/cmake/addons/bootstrap/ \
       -DCMAKE_GENERATOR=Ninja \
@@ -71,7 +71,7 @@ cmake --build .
 
 # Build some kodi-game addons
 cd /kodi/build
-mkdir addons_kodigame_build_cmake
+mkdir -p addons_kodigame_build_cmake
 cd addons_kodigame_build_cmake
 kodigame_addons_to_build=\
 'game..* '\
