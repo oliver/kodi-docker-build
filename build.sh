@@ -99,6 +99,7 @@ kodigame_addons_to_build=\
 '-game.libretro.parallext$ '\
 '-game.libretro.pcem$ '\
 '-game.libretro.ppsspp$ '\
+'-game.libretro.quasi88$ '\
 '-game.libretro.redbook$ '\
 '-game.libretro.same_cdi$ '\
 '-game.libretro.uae4arm$ '\
