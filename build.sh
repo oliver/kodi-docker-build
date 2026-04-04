@@ -91,6 +91,7 @@ kodigame_addons_to_build=\
 '-game.libretro.daphne$ '\
 '-game.libretro.dolphin$ '\
 '-game.libretro.dosbox-core$ '\
+'-game.libretro.flycast$ '\
 '-game.libretro.lrps2$ '\
 '-game.libretro.*mame.*$ '\
 '-game.libretro.parallext$ '\
