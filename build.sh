@@ -103,6 +103,7 @@ kodigame_addons_to_build=\
 '-game.libretro.redbook$ '\
 '-game.libretro.same_cdi$ '\
 '-game.libretro.scummvm$ '\
+'-game.libretro.tyrquake$ '\
 '-game.libretro.uae4arm$ '\
 '-game.libretro.*vice.*$ '\
 
