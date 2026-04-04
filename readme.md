@@ -54,7 +54,7 @@ docker run \
 ```
 
 The first build will take a few hours.
-It will create ca. 15 GB of temporary data and 1.5 GB of final results (in `kodi_install/`).
+It will create ca. 19 GB of temporary data and 2.5 GB of final results (in `kodi_install/`).
 
 ## Testing the build
 
