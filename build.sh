@@ -95,6 +95,7 @@ kodigame_addons_to_build=\
 '-game.libretro.fsuae$ '\
 '-game.libretro.lrps2$ '\
 '-game.libretro.*mame.*$ '\
+'-game.libretro.parallel_n64$ '\
 '-game.libretro.parallext$ '\
 '-game.libretro.pcem$ '\
 '-game.libretro.ppsspp$ '\
