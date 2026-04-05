@@ -27,7 +27,7 @@ RUN apt-get update && \
       libogg-dev libp8-platform-dev libpcre2-dev libplist-dev libpng-dev \
       libpulse-dev libshairplay-dev libsmbclient-dev libspdlog-dev \
       libsqlite3-dev libssl-dev libtag1-dev libtiff5-dev libtinyxml-dev \
-      libtinyxml2-dev libtool libudev-dev libunistring-dev libva-dev \
+      libtool libudev-dev libunistring-dev libva-dev \
       libvdpau-dev libvorbis-dev libxmu-dev libxrandr-dev libxslt1-dev \
       libxt-dev lsb-release meson nasm ninja-build nlohmann-json3-dev \
       openjdk-21-jre \

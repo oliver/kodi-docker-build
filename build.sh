@@ -23,10 +23,12 @@ cmake /kodi/source/kodi \
       -DADDONS_CONFIGURE_AT_STARTUP=0 \
       -DENABLE_INTERNAL_DAV1D=ON \
       -DAPP_RENDER_SYSTEM=gl \
+      -DENABLE_INTERNAL_TINYXML2=ON \
       -DENABLE_INTERNAL_FFMPEG=ON
 
-# First build just crossguid (with -DCMAKE_BUILD_TYPE=Release), then reconfigure the build directory and build Kodi itself (and the remaining dependencies) with -DCMAKE_BUILD_TYPE=RelWithDebInfo:
+# First build just crossguid and tinyxml2 (with -DCMAKE_BUILD_TYPE=Release), then reconfigure the build directory and build Kodi itself (and the remaining dependencies) with -DCMAKE_BUILD_TYPE=RelWithDebInfo:
 cmake --build . -- build-crossguid
+cmake --build . -- build-tinyxml2
 cmake /kodi/source/kodi \
       -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
