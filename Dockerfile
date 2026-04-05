@@ -70,18 +70,12 @@ RUN cd libdisplay-info && \
 WORKDIR /kodi/build
 
 
-# Build CMake 3 (because Debian Forky ships with CMake 4, which has removed compatibility with CMake < 3.5, which is needed by some addons)
-RUN mkdir -p /kodi/deps/cmake3
-WORKDIR /kodi/deps/cmake3
-
-RUN curl -Ssf -L -O https://github.com/Kitware/CMake/releases/download/v3.31.11/cmake-3.31.11.tar.gz
-RUN tar xzf cmake-3.31.11.tar.gz && \
-    cd cmake-3.31.11 && \
-    ./configure --prefix=/usr/local && \
-    make && \
-    make install
-
-WORKDIR /kodi/build
+# Install CMake 3 (because Debian Forky ships with CMake 4, which has removed compatibility with CMake < 3.5, which is needed by some addons)
+RUN cd /kodi/deps && \
+    curl -Ssf -L -O https://github.com/Kitware/CMake/releases/download/v3.31.11/cmake-3.31.11-linux-x86_64.tar.gz && \
+    echo 'd815c10cf54e8e122088b3bb25ea6b4010fb96b7ad6e1ad3fdef75be3d996b0b  cmake-3.31.11-linux-x86_64.tar.gz' > cmake-3.31.11-linux-x86_64.tar.gz.sha256 && \
+    sha256sum -c cmake-3.31.11-linux-x86_64.tar.gz.sha256 && \
+    tar xzf cmake-3.31.11-linux-x86_64.tar.gz --strip-components=1 -C /usr/local/
 
 
 # Add full password-less sudo permissions for build user, for easier development
